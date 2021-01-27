@@ -28,6 +28,8 @@ Vue.component('randevu-form-component', require('./components/RandevuFormCompone
 Vue.component('admin-appointment-component', require('./components/admin/AdminAppointmentComponent.vue').default);
 Vue.component('admin-today-appointment-component', require('./components/admin/AdminTodayAppointmentComponent.vue').default);
 Vue.component('admin-last-appointment-component', require('./components/admin/AdminLastAppointmentComponent.vue').default);
+Vue.component('admin-waiting-appointment-component', require('./components/admin/AdminWaitingAppointmentComponent.vue').default);
+Vue.component('admin-cancel-appointment-component', require('./components/admin/AdminCancelAppointmentComponent.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 
 /**

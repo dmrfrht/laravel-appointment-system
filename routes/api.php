@@ -26,5 +26,9 @@ Route::group(['namespace' => 'api', 'as' => 'api.'], function () {
     Route::get('/list','indexController@getList')->name('getList');
     Route::get('/today-list','indexController@getTodayList')->name('getTodayList');
     Route::get('/last-list','indexController@getLastList')->name('getLastList');
+    Route::get('/waiting-list','indexController@getWaitingList')->name('getWaitingList');
+    Route::get('/cancel-list','indexController@getCancelList')->name('getCancelList');
+
+    Route::post('/process', 'indexController@process')->name('process');
   });
 });

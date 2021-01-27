@@ -3,7 +3,9 @@
     <div class="col-md-4 mb-4" v-for="item in data">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title text-center">Randevu #{{ item.id }}</h5>
+          <h5 class="card-title text-center">
+            Randevu
+          </h5>
 
           <div class="appointment-detail p-3 mb-1">
             <p class="card-text text-center"><b>Ad-Soyad: </b> {{ item.full_name }}</p>
@@ -16,10 +18,18 @@
             <p class="card-text text-center m-0"><b>Tarih: </b> {{ item.date }}</p>
           </div>
 
-          <div class="appointment-properties px-3 pt-3 d-flex justify-content-between">
-            <button class="btn btn-danger btn-sm">Sil</button>
-            <button class="btn btn-success btn-sm">Onayla</button>
+          <div class="appointment-properties px-3 pt-3 d-flex justify-content-between" v-if="!item.isActive">
+            <button class="btn btn-danger btn-sm" @click="appointmentCancel(item.id)">Reddet</button>
+            <button class="btn btn-success btn-sm" @click="appointmentOkey(item.id)">Onayla</button>
           </div>
+
+          <span
+            v-if="!item.isActive"
+            class="bg-success"
+            style="padding: 3px; border-radius: 5px; position: absolute; top: 5px; right: 5px; color: #fff;"
+          >
+            Yeni
+          </span>
         </div>
       </div>
     </div>
@@ -27,11 +37,19 @@
 </template>
 
 <script>
+import axios from "axios";
 
 export default {
-  created() {
-    console.log('olustu')
-  },
-  props: ["data"]
+  props: ["data"],
+  methods: {
+    appointmentOkey(id) {
+      axios.post(`http://127.0.0.1:8000/api/admin/process`, { type: 1, id })
+        .then(res => console.log(res))
+    },
+    appointmentCancel(id) {
+      axios.post(`http://127.0.0.1:8000/api/admin/process`, { type: 2, id })
+        .then(res => console.log(res))
+    }
+  }
 }
 </script>

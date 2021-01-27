@@ -67,7 +67,7 @@
             class="form-control"
             v-model="date"
             @change="selectDate"
-            min=""
+            :min="minDate"
           >
         </div>
 
@@ -153,7 +153,8 @@ export default {
       workingHour: 0,
       errors: [],
       notificationType: null,
-      completeForm: true
+      completeForm: true,
+      minDate: new Date().toISOString().slice(0, 10),
     }
   },
   methods: {
