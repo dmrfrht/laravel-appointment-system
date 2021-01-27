@@ -1,0 +1,8 @@
+.appointment-detail {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.appointment-detail b {
+  text-decoration: underline;
+}

@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['namespace' => 'api', 'as' => 'api.'], function () {
+  Route::get('/working-hours/{date?}', 'indexController@getWorkingHours')->name('getWorkingHours');
+  Route::post('/appointment-store', 'indexController@appointmentStore')->name('appointmentStore');
+
+  Route::group(['namespace' => 'admin', 'as' => 'admin.', 'prefix' => 'admin'], function () {
+    Route::get('/list','indexController@getList')->name('getList');
+  });
+});
