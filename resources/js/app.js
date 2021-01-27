@@ -22,9 +22,12 @@ Vue.use(require('vue-resource'))
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+/*Vue.component('example-component', require('./components/ExampleComponent.vue').default);*/
+Vue.component('admin-list-appointment', require('./components/admin/AdminListAppointment.vue').default);
 Vue.component('randevu-form-component', require('./components/RandevuFormComponent.vue').default);
 Vue.component('admin-appointment-component', require('./components/admin/AdminAppointmentComponent.vue').default);
+Vue.component('admin-today-appointment-component', require('./components/admin/AdminTodayAppointmentComponent.vue').default);
+Vue.component('admin-last-appointment-component', require('./components/admin/AdminLastAppointmentComponent.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 
 /**

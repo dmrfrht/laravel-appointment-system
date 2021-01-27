@@ -1,8 +1,10 @@
 <template>
   <div class="container">
+
     <admin-list-appointment
       :data="items.data"
     ></admin-list-appointment>
+
 
     <div class="row d-flex justify-content-center">
       <pagination :data="items" @pagination-change-page="getData"></pagination>
@@ -32,7 +34,7 @@ export default {
     getData(page) {
       if (typeof page === 'undefined') page = 1
 
-      axios.get(`http://127.0.0.1:8000/api/admin/list/?page=${page}`)
+      axios.get(`http://127.0.0.1:8000/api/admin/last-list/?page=${page}`)
         .then(res => {
           this.items = res.data
         })
