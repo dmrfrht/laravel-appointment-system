@@ -2220,6 +2220,175 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AdminComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AdminComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      waiting: {
+        data: []
+      },
+      today: {
+        data: []
+      },
+      list: {
+        data: []
+      },
+      last: {
+        data: []
+      },
+      cancel: {
+        data: []
+      }
+    };
+  },
+  created: function created() {
+    this.getData();
+  },
+  methods: {
+    getData: function getData(page) {
+      var _this = this;
+
+      if (typeof page === 'undefined') page = 1;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/admin/all/?page=".concat(page)).then(function (res) {
+        _this.waiting = res.data.waiting_list;
+        _this.today = res.data.today_list;
+        _this.list = res.data.list;
+        _this.last = res.data.last_list;
+        _this.cancel = res.data.cancel_list;
+      });
+    },
+    updateOkey: function updateOkey(id) {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("http://127.0.0.1:8000/api/admin/process", {
+        type: 1,
+        id: id
+      }).then(function (res) {
+        return _this2.getData();
+      });
+    },
+    updateCancel: function updateCancel(id) {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("http://127.0.0.1:8000/api/admin/process", {
+        type: 2,
+        id: id
+      }).then(function (res) {
+        return _this3.getData();
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AdminLastAppointmentComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AdminLastAppointmentComponent.vue?vue&type=script&lang=js& ***!
@@ -2322,25 +2491,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["data"],
   methods: {
     appointmentOkey: function appointmentOkey(id) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("http://127.0.0.1:8000/api/admin/process", {
-        type: 1,
-        id: id
-      }).then(function (res) {
-        return console.log(res);
-      });
+      this.$emit('updateOkey', id);
     },
     appointmentCancel: function appointmentCancel(id) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("http://127.0.0.1:8000/api/admin/process", {
-        type: 2,
-        id: id
-      }).then(function (res) {
-        return console.log(res);
-      });
+      this.$emit('updateCancel', id);
     }
   }
 });
@@ -39599,6 +39774,289 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AdminComponent.vue?vue&type=template&id=2073db19&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AdminComponent.vue?vue&type=template&id=2073db19& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "tab-content", attrs: { id: "myTabContent" } }, [
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade show active",
+          attrs: {
+            id: "waiting",
+            role: "tabpanel",
+            "aria-labelledby": "waiting-tab"
+          }
+        },
+        [
+          _c("admin-list-appointment", {
+            attrs: { data: _vm.waiting.data },
+            on: { updateOkey: _vm.updateOkey, updateCancel: _vm.updateCancel }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row d-flex justify-content-center" },
+            [
+              _c("pagination", {
+                attrs: { data: _vm.waiting },
+                on: { "pagination-change-page": _vm.getData }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade",
+          attrs: { id: "home", role: "tabpanel", "aria-labelledby": "home-tab" }
+        },
+        [
+          _c("admin-list-appointment", {
+            attrs: { data: _vm.today.data },
+            on: { updateOkey: _vm.updateOkey, updateCancel: _vm.updateCancel }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row d-flex justify-content-center" },
+            [
+              _c("pagination", {
+                attrs: { data: _vm.today },
+                on: { "pagination-change-page": _vm.getData }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade",
+          attrs: {
+            id: "profile",
+            role: "tabpanel",
+            "aria-labelledby": "profile-tab"
+          }
+        },
+        [
+          _c("admin-list-appointment", {
+            attrs: { data: _vm.list.data },
+            on: { updateOkey: _vm.updateOkey, updateCancel: _vm.updateCancel }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row d-flex justify-content-center" },
+            [
+              _c("pagination", {
+                attrs: { data: _vm.list },
+                on: { "pagination-change-page": _vm.getData }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade",
+          attrs: {
+            id: "contact",
+            role: "tabpanel",
+            "aria-labelledby": "contact-tab"
+          }
+        },
+        [
+          _c("admin-list-appointment", {
+            attrs: { data: _vm.last.data },
+            on: { updateOkey: _vm.updateOkey, updateCancel: _vm.updateCancel }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row d-flex justify-content-center" },
+            [
+              _c("pagination", {
+                attrs: { data: _vm.last },
+                on: { "pagination-change-page": _vm.getData }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade",
+          attrs: {
+            id: "cancel",
+            role: "tabpanel",
+            "aria-labelledby": "cancel-tab"
+          }
+        },
+        [
+          _c("admin-list-appointment", {
+            attrs: { data: _vm.cancel.data },
+            on: { updateOkey: _vm.updateOkey, updateCancel: _vm.updateCancel }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row d-flex justify-content-center" },
+            [
+              _c("pagination", {
+                attrs: { data: _vm.cancel },
+                on: { "pagination-change-page": _vm.getData }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "ul",
+      {
+        staticClass: "nav nav-tabs mb-3",
+        attrs: { id: "myTab", role: "tablist" }
+      },
+      [
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link active",
+              attrs: {
+                id: "waiting-tab",
+                "data-toggle": "tab",
+                href: "#waiting",
+                role: "tab",
+                "aria-controls": "waiting",
+                "aria-selected": "true"
+              }
+            },
+            [_vm._v("Onay Bekleyen Randevular")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                id: "home-tab",
+                "data-toggle": "tab",
+                href: "#home",
+                role: "tab",
+                "aria-controls": "home",
+                "aria-selected": "true"
+              }
+            },
+            [_vm._v("Günü Gelen Randevular")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                id: "profile-tab",
+                "data-toggle": "tab",
+                href: "#profile",
+                role: "tab",
+                "aria-controls": "profile",
+                "aria-selected": "false"
+              }
+            },
+            [_vm._v("Gelecek Randevular")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                id: "contact-tab",
+                "data-toggle": "tab",
+                href: "#contact",
+                role: "tab",
+                "aria-controls": "contact",
+                "aria-selected": "false"
+              }
+            },
+            [_vm._v("Geçmiş Randevular")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "nav-item" }, [
+          _c(
+            "a",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                id: "cancel-tab",
+                "data-toggle": "tab",
+                href: "#cancel",
+                role: "tab",
+                "aria-controls": "cancel",
+                "aria-selected": "false"
+              }
+            },
+            [_vm._v("İptal Edilen Randevular")]
+          )
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AdminLastAppointmentComponent.vue?vue&type=template&id=42a59c30&":
 /*!**************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/AdminLastAppointmentComponent.vue?vue&type=template&id=42a59c30& ***!
@@ -39747,11 +40205,47 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
-            !item.isActive
+            item.isActive == 1
               ? _c(
                   "span",
                   {
                     staticClass: "bg-success",
+                    staticStyle: {
+                      padding: "3px",
+                      "border-radius": "5px",
+                      position: "absolute",
+                      top: "5px",
+                      left: "5px",
+                      color: "#fff"
+                    }
+                  },
+                  [_vm._v("\n          Onaylı\n        ")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            item.isActive == 2
+              ? _c(
+                  "span",
+                  {
+                    staticClass: "bg-danger",
+                    staticStyle: {
+                      padding: "3px",
+                      "border-radius": "5px",
+                      position: "absolute",
+                      top: "5px",
+                      left: "5px",
+                      color: "#fff"
+                    }
+                  },
+                  [_vm._v("\n          İptal Edildi\n        ")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            !item.isActive
+              ? _c(
+                  "span",
+                  {
+                    staticClass: "bg-info",
                     staticStyle: {
                       padding: "3px",
                       "border-radius": "5px",
@@ -53633,6 +54127,7 @@ Vue.use(__webpack_require__(/*! vue-resource */ "./node_modules/vue-resource/dis
 
 Vue.component('admin-list-appointment', __webpack_require__(/*! ./components/admin/AdminListAppointment.vue */ "./resources/js/components/admin/AdminListAppointment.vue")["default"]);
 Vue.component('randevu-form-component', __webpack_require__(/*! ./components/RandevuFormComponent.vue */ "./resources/js/components/RandevuFormComponent.vue")["default"]);
+Vue.component('admin-component', __webpack_require__(/*! ./components/admin/AdminComponent */ "./resources/js/components/admin/AdminComponent.vue")["default"]);
 Vue.component('admin-appointment-component', __webpack_require__(/*! ./components/admin/AdminAppointmentComponent.vue */ "./resources/js/components/admin/AdminAppointmentComponent.vue")["default"]);
 Vue.component('admin-today-appointment-component', __webpack_require__(/*! ./components/admin/AdminTodayAppointmentComponent.vue */ "./resources/js/components/admin/AdminTodayAppointmentComponent.vue")["default"]);
 Vue.component('admin-last-appointment-component', __webpack_require__(/*! ./components/admin/AdminLastAppointmentComponent.vue */ "./resources/js/components/admin/AdminLastAppointmentComponent.vue")["default"]);
@@ -53898,6 +54393,76 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminCancelAppointmentComponent_vue_vue_type_template_id_5c94f2cc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminCancelAppointmentComponent_vue_vue_type_template_id_5c94f2cc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AdminComponent.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/admin/AdminComponent.vue ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AdminComponent_vue_vue_type_template_id_2073db19___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminComponent.vue?vue&type=template&id=2073db19& */ "./resources/js/components/admin/AdminComponent.vue?vue&type=template&id=2073db19&");
+/* harmony import */ var _AdminComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/AdminComponent.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _AdminComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _AdminComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdminComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdminComponent_vue_vue_type_template_id_2073db19___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AdminComponent_vue_vue_type_template_id_2073db19___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/AdminComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AdminComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/admin/AdminComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AdminComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AdminComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/AdminComponent.vue?vue&type=template&id=2073db19&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/admin/AdminComponent.vue?vue&type=template&id=2073db19& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminComponent_vue_vue_type_template_id_2073db19___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AdminComponent.vue?vue&type=template&id=2073db19& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/AdminComponent.vue?vue&type=template&id=2073db19&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminComponent_vue_vue_type_template_id_2073db19___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminComponent_vue_vue_type_template_id_2073db19___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

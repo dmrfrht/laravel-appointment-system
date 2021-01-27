@@ -24,8 +24,24 @@
           </div>
 
           <span
-            v-if="!item.isActive"
+            v-if="item.isActive == 1"
             class="bg-success"
+            style="padding: 3px; border-radius: 5px; position: absolute; top: 5px; left: 5px; color: #fff;"
+          >
+            Onaylı
+          </span>
+
+          <span
+            v-if="item.isActive == 2"
+            class="bg-danger"
+            style="padding: 3px; border-radius: 5px; position: absolute; top: 5px; left: 5px; color: #fff;"
+          >
+            İptal Edildi
+          </span>
+
+          <span
+            v-if="!item.isActive"
+            class="bg-info"
             style="padding: 3px; border-radius: 5px; position: absolute; top: 5px; right: 5px; color: #fff;"
           >
             Yeni
@@ -43,12 +59,10 @@ export default {
   props: ["data"],
   methods: {
     appointmentOkey(id) {
-      axios.post(`http://127.0.0.1:8000/api/admin/process`, { type: 1, id })
-        .then(res => console.log(res))
+      this.$emit('updateOkey', id)
     },
     appointmentCancel(id) {
-      axios.post(`http://127.0.0.1:8000/api/admin/process`, { type: 2, id })
-        .then(res => console.log(res))
+      this.$emit('updateCancel', id)
     }
   }
 }

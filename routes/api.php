@@ -23,6 +23,8 @@ Route::group(['namespace' => 'api', 'as' => 'api.'], function () {
   Route::post('/appointment-store', 'indexController@appointmentStore')->name('appointmentStore');
 
   Route::group(['namespace' => 'admin', 'as' => 'admin.', 'prefix' => 'admin'], function () {
+    Route::get('/all', 'indexController@all')->name('all');
+
     Route::get('/list','indexController@getList')->name('getList');
     Route::get('/today-list','indexController@getTodayList')->name('getTodayList');
     Route::get('/last-list','indexController@getLastList')->name('getLastList');
