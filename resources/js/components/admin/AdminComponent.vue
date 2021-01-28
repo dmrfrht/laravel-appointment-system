@@ -96,7 +96,9 @@
 
 <script>
 import axios from "axios";
+import io from 'socket.io-client'
 
+let socket = io(`http://127.0.0.1:3000`)
 export default {
   data() {
     return {
@@ -109,6 +111,11 @@ export default {
   },
   created() {
     this.getData();
+
+    socket.on('admin_appointment_list', () => {
+      console.log('veri geldi')
+      this.getData()
+    })
   },
   methods: {
     getData(page) {

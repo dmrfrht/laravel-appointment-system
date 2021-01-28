@@ -14,35 +14,35 @@ class indexController extends Controller
     $returnArray = [];
 
     /** waiting */
-    $returnArray['waiting_list'] = Appointment::where('isActive', 0)->orderBy('workingHour', 'ASC')->paginate(3);
+    $returnArray['waiting_list'] = Appointment::where('isActive', 0)->orderBy('workingHour', 'ASC')->paginate(6);
     $returnArray['waiting_list']->getCollection()->transform(function ($value) {
       $value['working'] = WorkingHours::getString($value['workingHour']);
       return $value;
     });
 
     /** cancel */
-    $returnArray['cancel_list'] = Appointment::where('isActive', 2)->orderBy('workingHour', 'ASC')->paginate(3);
+    $returnArray['cancel_list'] = Appointment::where('isActive', 2)->orderBy('workingHour', 'ASC')->paginate(6);
     $returnArray['cancel_list']->getCollection()->transform(function ($value) {
       $value['working'] = WorkingHours::getString($value['workingHour']);
       return $value;
     });
 
     /** list */
-    $returnArray['list'] = Appointment::where('isActive', 1)->where('date', '>', date('Y-m-d'))->orderBy('workingHour', 'ASC')->paginate(3);
+    $returnArray['list'] = Appointment::where('isActive', 1)->where('date', '>', date('Y-m-d'))->orderBy('workingHour', 'ASC')->paginate(6);
     $returnArray['list']->getCollection()->transform(function ($value) {
       $value['working'] = WorkingHours::getString($value['workingHour']);
       return $value;
     });
 
     /** last */
-    $returnArray['last_list'] = Appointment::where('date', '<', date('Y-m-d'))->orderBy('workingHour', 'ASC')->paginate(3);
+    $returnArray['last_list'] = Appointment::where('date', '<', date('Y-m-d'))->orderBy('workingHour', 'ASC')->paginate(6);
     $returnArray['last_list']->getCollection()->transform(function ($value) {
       $value['working'] = WorkingHours::getString($value['workingHour']);
       return $value;
     });
 
     /** today */
-    $returnArray['today_list'] = Appointment::where('isActive', 1)->where('date', date('Y-m-d'))->orderBy('workingHour', 'ASC')->paginate(3);
+    $returnArray['today_list'] = Appointment::where('isActive', 1)->where('date', date('Y-m-d'))->orderBy('workingHour', 'ASC')->paginate(6);
     $returnArray['today_list']->getCollection()->transform(function ($value) {
       $value['working'] = WorkingHours::getString($value['workingHour']);
       return $value;

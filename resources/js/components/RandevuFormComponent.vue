@@ -140,6 +140,9 @@
 
 <script>
 import axios from 'axios'
+import io from 'socket.io-client'
+
+let socket = io(`http://127.0.0.1:3000`)
 
 export default {
   data() {
@@ -169,7 +172,10 @@ export default {
           notificationType: this.notificationType
         })
           .then(res => {
-            if (res.status) this.completeForm = false
+            if (res.status) {
+              socket.emit('new_appointment_create')
+              this.completeForm = false
+            }
           })
       }
 
