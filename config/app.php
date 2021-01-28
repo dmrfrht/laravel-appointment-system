@@ -1,5 +1,15 @@
 <?php
 
+define('APPOINTMENT_DEFAULT', 0);
+define('APPOINTMENT_SUCCESS', 1);
+define('APPOINTMENT_CANCEL', 2);
+
+define('NOTIFICATION_EMAIL', 0);
+define('NOTIFICATION_SMS', 1);
+
+define('REMINDER_DEFAULT', 0);
+define('REMINDER_SUCCESS', 1);
+
 return [
 
     /*
