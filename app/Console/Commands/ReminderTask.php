@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Appointment;
 use App\WorkingHours;
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 use function Symfony\Component\Translation\t;
@@ -67,10 +68,70 @@ class ReminderTask extends Command
 
           Appointment::where('id', $v['id'])->update(['isSend' => REMINDER_SUCCESS]);
         } catch (\Exception $e) {
-          dd($e->getMessage());
+          Appointment::where('id', $v['id'])->update(['isSend' => REMINDER_FAILED]);
         }
       }
-    }
 
+      if ($v['notificationType'] == NOTIFICATION_SMS) {
+        // bu bilgilerin olmadığı için entegrasyonunu yapamadım
+        $username = 'yok';
+        $password = 'yok';
+        $origin_name = 'yok';
+
+        $message = 'Merhaba <b>' . $v['full_name'] . '</b>, Randevunuz <b>' . $v['date'] . '</b> tarihinde <b>' . WorkingHours::getString($v['workingHour']) . '</b> saatleri arasındadır.Lütfen geç kalmayınız.';
+        $number = str_replace("-", "", $v['phone']);
+
+        $xml = '
+        <request>
+            <authentication>
+              <username>' . $username . '</username>
+              <password>' . $password . '</password>
+            </authentication>
+            <order>
+              <sender>' . $origin_name . '</sender>
+              <sendDateTime>' . date('d/m/Y H:i') . '</sendDateTime>
+              <message>
+                <text>' . $message . '</text>
+                <receipents>
+                <number>' . $number . '</number>
+                </receipents>
+              </message>
+            </order> 
+          </request>
+        ';
+
+        try {
+          $result = self::sendRequest('http://api.iletimerkezi.com/v1/send-sms', $xml, array('Content-Type: text/xml'));
+        
+          $array = new \SimpleXMLElement($result);
+  
+          if ($array->status->code == '200') {
+            Appointment::where('id', $v['id'])->update(['isSend' => REMINDER_SUCCESS]);
+          }
+        } catch(\Exception $e) {
+          Appointment::where('id', $v['id'])->update(['isSend' => REMINDER_FAILED]);
+        }
+
+        dd($array);
+      }
+    }
+  }
+
+  static function sendRequest($site_name, $send_xml, $header_type)
+  {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $site_name);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $send_xml);
+    // curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 1);
+    // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, 0);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 120);
+
+    $result = curl_exec($ch);
+
+    return $result;
   }
 }

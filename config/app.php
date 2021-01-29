@@ -9,6 +9,8 @@ define('NOTIFICATION_SMS', 1);
 
 define('REMINDER_DEFAULT', 0);
 define('REMINDER_SUCCESS', 1);
+define('REMINDER_FAILED', 2);
+
 
 return [
 
