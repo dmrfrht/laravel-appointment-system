@@ -27,6 +27,8 @@ Route::group(['namespace' => 'api', 'as' => 'api.'], function () {
   Route::group(['namespace' => 'admin', 'as' => 'admin.', 'prefix' => 'admin'], function () {
     Route::get('/all', 'indexController@all')->name('all');
 
+    Route::get('/detail/{id}', 'indexController@detail')->name('detail');
+
     Route::get('/list','indexController@getList')->name('getList');
     Route::get('/today-list','indexController@getTodayList')->name('getTodayList');
     Route::get('/last-list','indexController@getLastList')->name('getLastList');

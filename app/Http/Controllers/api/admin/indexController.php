@@ -58,4 +58,15 @@ class indexController extends Controller
 
     return response()->json(["status" => true]);
   }
+
+  public function detail($id)
+  {
+    $returnArray = [];
+    $data = Appointment::where('id', $id)->get();
+    $data[0]['working'] = WorkingHours::getString($data[0]['workingHour']);
+    $data[0]['notification'] = ($data[0]['notificationType'] == NOTIFICATION_EMAIL) ? 'Email' : 'SMS';
+    $returnArray['data'] = $data[0];
+
+    return response()->json($returnArray);
+  }
 }
