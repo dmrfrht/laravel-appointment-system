@@ -21,6 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['namespace' => 'api', 'as' => 'api.'], function () {
   Route::get('/working-hours/{date?}', 'indexController@getWorkingHours')->name('getWorkingHours');
   Route::post('/appointment-store', 'indexController@appointmentStore')->name('appointmentStore');
+  Route::post('/working-store', 'indexController@postWorkingStore')->name('postWorkingStore');
+  Route::get('/working-list', 'indexController@getWorkingList')->name('getWorkingList');
 
   Route::group(['namespace' => 'admin', 'as' => 'admin.', 'prefix' => 'admin'], function () {
     Route::get('/all', 'indexController@all')->name('all');

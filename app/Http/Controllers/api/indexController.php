@@ -46,4 +46,34 @@ class indexController extends Controller
 
     return response()->json($returnArray);
   }
+
+  public function postWorkingStore(Request $request)
+  {
+    $all = $request->except('_token');
+
+    WorkingHours::query()->delete();
+
+    foreach ($all as $k => $v) {
+
+      foreach ($v as $key => $value) {
+        WorkingHours::create([
+          'day' => $k,
+          'hours' => $value
+        ]);
+      }
+    }
+
+    return response()->json($all);
+  }
+
+  public function getWorkingList()
+  {
+    $returnArray = [];
+    $data = WorkingHours::all();
+    foreach ($data as $k => $v) {
+      $returnArray[$v['day']][] = $v['hours'];
+    }
+
+    return response()->json($returnArray);
+  }
 }

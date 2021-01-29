@@ -32,6 +32,8 @@ Vue.component('admin-today-appointment-component', require('./components/admin/A
 Vue.component('admin-last-appointment-component', require('./components/admin/AdminLastAppointmentComponent.vue').default);
 Vue.component('admin-waiting-appointment-component', require('./components/admin/AdminWaitingAppointmentComponent.vue').default);
 Vue.component('admin-cancel-appointment-component', require('./components/admin/AdminCancelAppointmentComponent.vue').default);
+Vue.component('admin-working-component', require('./components/admin/AdminWorkingComponent.vue').default);
+Vue.component('admin-working-item-component', require('./components/admin/AdminWorkingItemComponent.vue').default);
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 
