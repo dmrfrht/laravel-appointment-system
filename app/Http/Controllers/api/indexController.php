@@ -19,12 +19,16 @@ class indexController extends Controller
     foreach ($hours as $k => $v) {
       $control = Appointment::where('date', $date)
         ->where('workingHour', $v['id'])
-        ->where(function($control) {
+        ->where(function ($control) {
           $control->orWhere('isActive', APPOINTMENT_DEFAULT);
           $control->orWhere('isActive', APPOINTMENT_SUCCESS);
         })
         ->count();
-      $v['isActive'] = ($control == 0) ? true : false;
+
+      $exp = explode('-', $v['hours']);
+      $nowTime = date("H:i");
+
+      $v['isActive'] = ($control == 0 and $exp[0] > $nowTime) ? true : false;
       $returnArray[] = $v;
     }
 

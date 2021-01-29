@@ -2131,6 +2131,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default()("http://127.0.0.1:3000");
@@ -2164,7 +2176,7 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default()("http://127
           notificationType: this.notificationType
         }).then(function (res) {
           if (res.status) {
-            socket.emit('new_appointment_create');
+            socket.emit("new_appointment_create");
             _this.completeForm = false;
           }
         });
@@ -2194,7 +2206,7 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default()("http://127
   mounted: function mounted() {
     var _this3 = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/working-hours').then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/working-hours").then(function (res) {
       _this3.workingHours = res.data;
     });
   }
@@ -2415,6 +2427,78 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default()("http://127.0.0.1:3000");
@@ -2442,8 +2526,8 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default()("http://127
     var _this = this;
 
     this.getData();
-    socket.on('admin_appointment_list', function () {
-      console.log('veri geldi');
+    socket.on("admin_appointment_list", function () {
+      console.log("veri geldi");
 
       _this.getData();
     });
@@ -2452,7 +2536,7 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default()("http://127
     getData: function getData(page) {
       var _this2 = this;
 
-      if (typeof page === 'undefined') page = 1;
+      if (typeof page === "undefined") page = 1;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/admin/all/?page=".concat(page)).then(function (res) {
         _this2.waiting = res.data.waiting_list;
         _this2.today = res.data.today_list;
@@ -48384,7 +48468,7 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("label", { staticClass: "form-check-label" }, [
-                      _vm._v("\n              SMS\n            ")
+                      _vm._v(" SMS ")
                     ])
                   ]),
                   _vm._v(" "),
@@ -48409,7 +48493,7 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("label", { staticClass: "form-check-label" }, [
-                      _vm._v("\n              E-posta\n            ")
+                      _vm._v(" E-posta ")
                     ])
                   ])
                 ]
