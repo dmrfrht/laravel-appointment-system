@@ -12,11 +12,18 @@ class indexController extends Controller
   public function getWorkingHours($date = '')
   {
     $date = ($date == '') ? date("Y-m-d") : $date;
+    $day = date("l", strtotime($date));
     $returnArray = [];
-    $hours = WorkingHours::all();
+    $hours = WorkingHours::where('day', $day)->get();
 
     foreach ($hours as $k => $v) {
-      $control = Appointment::where('date', $date)->where('workingHour', $v['id'])->where('isActive', 1)->count();
+      $control = Appointment::where('date', $date)
+        ->where('workingHour', $v['id'])
+        ->where(function($control) {
+          $control->orWhere('isActive', APPOINTMENT_DEFAULT);
+          $control->orWhere('isActive', APPOINTMENT_SUCCESS);
+        })
+        ->count();
       $v['isActive'] = ($control == 0) ? true : false;
       $returnArray[] = $v;
     }
