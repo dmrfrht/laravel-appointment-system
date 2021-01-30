@@ -2324,20 +2324,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["modalId"],
   data: function data() {
     return {
-      data: []
+      data: [],
+      comments: [],
+      text: ""
     };
   },
   created: function created() {
-    var _this = this;
+    this.getData();
+  },
+  methods: {
+    store: function store(id) {
+      var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/admin/detail/".concat(this.modalId)).then(function (res) {
-      return _this.data = res.data.data;
-    });
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("http://127.0.0.1:8000/api/admin/detail", {
+        id: this.modalId,
+        text: this.text
+      }).then(function (res) {
+        if (res.data.status == true) {
+          _this.text = "";
+
+          _this.getData();
+        }
+      });
+    },
+    getData: function getData() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/admin/detail/".concat(this.modalId)).then(function (res) {
+        _this2.data = res.data.data;
+        _this2.comments = res.data.comment;
+      });
+    }
   }
 });
 
@@ -10068,7 +10101,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.modal-mask {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: table;\n  transition: opacity 0.3s ease;\n}\n.modal-wrapper {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container {\n  width: 500px;\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n  margin-top: 0;\n  color: #42b983 !important;\n}\n.modal-body {\n  margin: 20px 0;\n}\n.modal-default-button {\n  float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n  opacity: 0;\n}\n.modal-leave-active {\n  opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n  transform: scale(1.1);\n}\n", ""]);
+exports.push([module.i, "\n.modal-mask {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: table;\n  transition: opacity 0.3s ease;\n}\n.modal-wrapper {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container {\n  width: 500px;\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3 {\n  margin-top: 0;\n  color: #42b983 !important;\n}\n.modal-body {\n  margin: 20px 0;\n}\n.modal-default-button {\n  float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter {\n  opacity: 0;\n}\n.modal-leave-active {\n  opacity: 0;\n}\n.modal-enter .modal-container,\n.modal-leave-active .modal-container {\n  transform: scale(1.1);\n}\n.modal-footer {\n  flex-direction: column;\n  align-items: start;\n}\n.old-comments {\n  width: 100%;\n}\n.old-comments ul li {\n  width: 100%;\n  padding: 5px 10px;\n  list-style-type: disc;\n  border: 1px solid #ccc;\n  border-radius: 5px;\n}\n.old-comments ul li:not(:last-child) {\n  margin-bottom: 5px;\n}\n", ""]);
 
 // exports
 
@@ -49483,7 +49516,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("\n              Kapat\n            ")]
+                [_vm._v("\n            Kapat\n          ")]
               )
             ]
           ),
@@ -49541,7 +49574,53 @@ var render = function() {
             2
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "modal-footer" }, [_vm._t("footer")], 2)
+          _c(
+            "div",
+            { staticClass: "modal-footer" },
+            [
+              _vm._t("footer", [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.text,
+                      expression: "text"
+                    }
+                  ],
+                  staticClass: "form-control d-block",
+                  attrs: { rows: "3", placeholder: "Yorumunuzu giriniz.." },
+                  domProps: { value: _vm.text },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.text = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", on: { click: _vm.store } },
+                  [_vm._v("Kaydet")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "old-comments" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "list-unstyled" },
+                    _vm._l(_vm.comments, function(comment) {
+                      return _c("li", [_vm._v(_vm._s(comment.text))])
+                    }),
+                    0
+                  )
+                ])
+              ])
+            ],
+            2
+          )
         ])
       ])
     ])

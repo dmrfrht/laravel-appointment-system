@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\admin;
 
 use App\Appointment;
+use App\AppointmentNote;
 use App\Http\Controllers\Controller;
 use App\WorkingHours;
 use Illuminate\Http\Request;
@@ -66,6 +67,26 @@ class indexController extends Controller
     $data[0]['working'] = WorkingHours::getString($data[0]['workingHour']);
     $data[0]['notification'] = ($data[0]['notificationType'] == NOTIFICATION_EMAIL) ? 'Email' : 'SMS';
     $returnArray['data'] = $data[0];
+    $returnArray['comment'] = AppointmentNote::where('appointment_id', $id)->orderBy('id', 'DESC')->get();
+
+    return response()->json($returnArray);
+  }
+
+  public function detailStore(Request $request)
+  {
+    $returnArray = [];
+    $all = $request->except('_token');
+
+    $create = AppointmentNote::create([
+      'appointment_id' => $all['id'],
+      'text' => $all['text']
+    ]);
+
+    if ($create) {
+      $returnArray['status'] = true;
+    } else {
+      $returnArray['status'] = false;
+    }
 
     return response()->json($returnArray);
   }

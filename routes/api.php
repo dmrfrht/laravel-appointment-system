@@ -29,6 +29,8 @@ Route::group(['namespace' => 'api', 'as' => 'api.'], function () {
 
     Route::get('/detail/{id}', 'indexController@detail')->name('detail');
 
+    Route::post('/detail', 'indexController@detailStore')->name('detailStore');
+
     Route::get('/list','indexController@getList')->name('getList');
     Route::get('/today-list','indexController@getTodayList')->name('getTodayList');
     Route::get('/last-list','indexController@getLastList')->name('getLastList');

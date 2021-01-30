@@ -6,11 +6,11 @@
           <div class="modal-header d-flex justify-content-between">
             <h3 slot="header">{{ data.full_name }}</h3>
             <button
-                class="modal-default-button btn btn-info"
-                @click="$emit('close')"
-              >
-                Kapat
-              </button>
+              class="modal-default-button btn btn-info"
+              @click="$emit('close')"
+            >
+              Kapat
+            </button>
           </div>
 
           <div class="modal-body">
@@ -37,7 +37,18 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              
+              <textarea
+                rows="3"
+                class="form-control d-block"
+                placeholder="Yorumunuzu giriniz.."
+                v-model="text"
+              ></textarea>
+              <button class="btn btn-primary" @click="store">Kaydet</button>
+              <div class="old-comments">
+                <ul class="list-unstyled">
+                  <li v-for="comment in comments">{{ comment.text }}</li>
+                </ul>
+              </div>
             </slot>
           </div>
         </div>
@@ -53,12 +64,35 @@ export default {
   data() {
     return {
       data: [],
+      comments: [],
+      text: "",
     };
   },
   created() {
-    axios
-      .get(`http://127.0.0.1:8000/api/admin/detail/${this.modalId}`)
-      .then((res) => (this.data = res.data.data));
+    this.getData();
+  },
+  methods: {
+    store(id) {
+      axios
+        .post(`http://127.0.0.1:8000/api/admin/detail`, {
+          id: this.modalId,
+          text: this.text,
+        })
+        .then((res) => {
+          if (res.data.status == true) {
+            this.text = "";
+            this.getData();
+          }
+        });
+    },
+    getData() {
+      axios
+        .get(`http://127.0.0.1:8000/api/admin/detail/${this.modalId}`)
+        .then((res) => {
+          this.data = res.data.data;
+          this.comments = res.data.comment;
+        });
+    },
   },
 };
 </script>
@@ -126,5 +160,26 @@ export default {
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+.modal-footer {
+  flex-direction: column;
+  align-items: start;
+}
+
+.old-comments {
+  width: 100%;
+}
+
+.old-comments ul li {
+  width: 100%;
+  padding: 5px 10px;
+  list-style-type: disc;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.old-comments ul li:not(:last-child) {
+  margin-bottom: 5px;
 }
 </style>
