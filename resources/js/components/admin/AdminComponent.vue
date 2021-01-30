@@ -78,7 +78,7 @@
         <div class="row d-flex justify-content-center">
           <pagination
             :data="waiting"
-            @pagination-change-page="getData"
+            @pagination-change-page="waitingData"
           ></pagination>
         </div>
       </div>
@@ -98,7 +98,7 @@
         <div class="row d-flex justify-content-center">
           <pagination
             :data="today"
-            @pagination-change-page="getData"
+            @pagination-change-page="todayData"
           ></pagination>
         </div>
       </div>
@@ -118,7 +118,7 @@
         <div class="row d-flex justify-content-center">
           <pagination
             :data="list"
-            @pagination-change-page="getData"
+            @pagination-change-page="listData"
           ></pagination>
         </div>
       </div>
@@ -138,7 +138,7 @@
         <div class="row d-flex justify-content-center">
           <pagination
             :data="last"
-            @pagination-change-page="getData"
+            @pagination-change-page="lastData"
           ></pagination>
         </div>
       </div>
@@ -158,7 +158,7 @@
         <div class="row d-flex justify-content-center">
           <pagination
             :data="cancel"
-            @pagination-change-page="getData"
+            @pagination-change-page="cancelData"
           ></pagination>
         </div>
       </div>
@@ -190,18 +190,29 @@ export default {
     });
   },
   methods: {
-    getData(page) {
-      if (typeof page === "undefined") page = 1;
-
-      axios
-        .get(`http://127.0.0.1:8000/api/admin/all/?page=${page}`)
-        .then((res) => {
-          this.waiting = res.data.waiting_list;
-          this.today = res.data.today_list;
-          this.list = res.data.list;
-          this.last = res.data.last_list;
-          this.cancel = res.data.cancel_list;
-        });
+    getData(url = "http://127.0.0.1:8000/api/admin/all") {
+      axios.get(url).then((res) => {
+        this.waiting = res.data.waiting_list;
+        this.today = res.data.today_list;
+        this.list = res.data.list;
+        this.last = res.data.last_list;
+        this.cancel = res.data.cancel_list;
+      });
+    },
+    waitingData(page) {
+      this.getData(`http://127.0.0.1:8000/api/admin/all?waiting_page=${page}`);
+    },
+    listData(page) {
+      this.getData(`http://127.0.0.1:8000/api/admin/all?list_page=${page}`);
+    },
+    todayData(page) {
+      this.getData(`http://127.0.0.1:8000/api/admin/all?today_page=${page}`);
+    },
+    lastData(page) {
+      this.getData(`http://127.0.0.1:8000/api/admin/all?last_page=${page}`);
+    },
+    cancelData(page) {
+      this.getData(`http://127.0.0.1:8000/api/admin/all?cancel_page=${page}`);
     },
     updateOkey(id) {
       axios

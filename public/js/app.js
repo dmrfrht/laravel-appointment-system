@@ -2782,17 +2782,32 @@ var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_1___default()("http://127
     });
   },
   methods: {
-    getData: function getData(page) {
+    getData: function getData() {
       var _this2 = this;
 
-      if (typeof page === "undefined") page = 1;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/admin/all/?page=".concat(page)).then(function (res) {
+      var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "http://127.0.0.1:8000/api/admin/all";
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(url).then(function (res) {
         _this2.waiting = res.data.waiting_list;
         _this2.today = res.data.today_list;
         _this2.list = res.data.list;
         _this2.last = res.data.last_list;
         _this2.cancel = res.data.cancel_list;
       });
+    },
+    waitingData: function waitingData(page) {
+      this.getData("http://127.0.0.1:8000/api/admin/all?waiting_page=".concat(page));
+    },
+    listData: function listData(page) {
+      this.getData("http://127.0.0.1:8000/api/admin/all?list_page=".concat(page));
+    },
+    todayData: function todayData(page) {
+      this.getData("http://127.0.0.1:8000/api/admin/all?today_page=".concat(page));
+    },
+    lastData: function lastData(page) {
+      this.getData("http://127.0.0.1:8000/api/admin/all?last_page=".concat(page));
+    },
+    cancelData: function cancelData(page) {
+      this.getData("http://127.0.0.1:8000/api/admin/all?cancel_page=".concat(page));
     },
     updateOkey: function updateOkey(id) {
       var _this3 = this;
@@ -50034,7 +50049,7 @@ var render = function() {
             [
               _c("pagination", {
                 attrs: { data: _vm.waiting },
-                on: { "pagination-change-page": _vm.getData }
+                on: { "pagination-change-page": _vm.waitingData }
               })
             ],
             1
@@ -50061,7 +50076,7 @@ var render = function() {
             [
               _c("pagination", {
                 attrs: { data: _vm.today },
-                on: { "pagination-change-page": _vm.getData }
+                on: { "pagination-change-page": _vm.todayData }
               })
             ],
             1
@@ -50092,7 +50107,7 @@ var render = function() {
             [
               _c("pagination", {
                 attrs: { data: _vm.list },
-                on: { "pagination-change-page": _vm.getData }
+                on: { "pagination-change-page": _vm.listData }
               })
             ],
             1
@@ -50123,7 +50138,7 @@ var render = function() {
             [
               _c("pagination", {
                 attrs: { data: _vm.last },
-                on: { "pagination-change-page": _vm.getData }
+                on: { "pagination-change-page": _vm.lastData }
               })
             ],
             1
@@ -50154,7 +50169,7 @@ var render = function() {
             [
               _c("pagination", {
                 attrs: { data: _vm.cancel },
-                on: { "pagination-change-page": _vm.getData }
+                on: { "pagination-change-page": _vm.cancelData }
               })
             ],
             1
