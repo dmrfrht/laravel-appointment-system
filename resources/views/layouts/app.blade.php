@@ -44,6 +44,9 @@
                         <li class="list-item">
                           <a href="/login" class="nav-link">Giriş Yap</a>
                         </li>
+                        <li class="list-item">
+                            <a href="{{ route('detail') }}" class="nav-link">Randevu Detayı Sorgula</a>
+                          </li>
                       </ul>
                     @endguest
 

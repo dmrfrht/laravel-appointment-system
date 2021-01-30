@@ -1978,6 +1978,144 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RandevuDetailComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RandevuDetailComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      completeForm: false,
+      code: null,
+      errors: [],
+      info: [],
+      notificationType: "",
+      note: []
+    };
+  },
+  methods: {
+    store: function store() {
+      var _this = this;
+
+      if (this.code != null) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("http://127.0.0.1:8000/api/appointment-detail", {
+          code: this.code
+        }).then(function (res) {
+          if (res.data.status == true) {
+            _this.info = res.data.info;
+            _this.note = res.data.note;
+            _this.completeForm = true;
+          } else {
+            _this.errors = [];
+
+            _this.errors.push(res.data.message);
+          }
+
+          _this.code = "";
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
+
+      this.errors = [];
+
+      if (this.code == null) {
+        this.errors.push("Randevu Kodu Boş Bırakılamaz");
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RandevuFormComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RandevuFormComponent.vue?vue&type=script&lang=js& ***!
@@ -49080,6 +49218,185 @@ var plugin = (function (Vue) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RandevuDetailComponent.vue?vue&type=template&id=12015fb8&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RandevuDetailComponent.vue?vue&type=template&id=12015fb8& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", [
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "ul",
+              { staticClass: "list-unstyled ml-auto mr-auto" },
+              _vm._l(_vm.errors, function(error) {
+                return _c(
+                  "li",
+                  {
+                    staticClass: "py-2 px-4",
+                    staticStyle: {
+                      border: "1px solid #ccc",
+                      "margin-bottom": "5px",
+                      "border-radius": "5px"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n              " + _vm._s(error) + "\n            "
+                    )
+                  ]
+                )
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-success",
+                staticStyle: { float: "right" },
+                on: { click: _vm.store }
+              },
+              [
+                _c("i", { staticClass: "fa fa-search" }),
+                _vm._v("\n            Randevu Ara\n          ")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "clearfix" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "form" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Kod")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.code,
+                    expression: "code"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Randevu kodu giriniz.." },
+                domProps: { value: _vm.code },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.code = $event.target.value
+                  }
+                }
+              })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.completeForm
+          ? _c("div", [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "col-md-6 ml-auto mr-auto d-flex flex-column justify-content-between p-4",
+                  staticStyle: { border: "1px solid #ccc" }
+                },
+                [
+                  _c("div", [
+                    _c("span", [
+                      _c("b", [_vm._v("Ad-Soyad:")]),
+                      _vm._v(" " + _vm._s(_vm.info.full_name))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "date-time d-flex justify-content-between" },
+                    [
+                      _c("span", [
+                        _c("b", [_vm._v("Tarih:")]),
+                        _vm._v(" " + _vm._s(_vm.info.date))
+                      ]),
+                      _vm._v(" "),
+                      _c("span", [
+                        _c("b", [_vm._v("Saat:")]),
+                        _vm._v(" " + _vm._s(_vm.info.working))
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("hr"),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("span", [
+                      _c("b", [_vm._v("Bildirim Türü:")]),
+                      _vm._v(" " + _vm._s(_vm.info.notification))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mt-2" }, [
+                    _c("h6", { staticClass: "text-center" }, [
+                      _vm._v("Notlar")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      _vm._l(_vm.note, function(item) {
+                        return _c("li", [_vm._v(_vm._s(item.text))])
+                      }),
+                      0
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          : _vm._e()
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "btn btn-outline-primary", attrs: { href: "/detail" } },
+      [
+        _c("i", { staticClass: "fas fa-arrow-left" }),
+        _vm._v("\n          Yenile\n        ")
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RandevuFormComponent.vue?vue&type=template&id=2e97cb25&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RandevuFormComponent.vue?vue&type=template&id=2e97cb25& ***!
@@ -64328,6 +64645,7 @@ Vue.use(__webpack_require__(/*! vue-resource */ "./node_modules/vue-resource/dis
 
 Vue.component('admin-list-appointment', __webpack_require__(/*! ./components/admin/AdminListAppointment.vue */ "./resources/js/components/admin/AdminListAppointment.vue")["default"]);
 Vue.component('randevu-form-component', __webpack_require__(/*! ./components/RandevuFormComponent.vue */ "./resources/js/components/RandevuFormComponent.vue")["default"]);
+Vue.component('randevu-detail-component', __webpack_require__(/*! ./components/RandevuDetailComponent.vue */ "./resources/js/components/RandevuDetailComponent.vue")["default"]);
 Vue.component('admin-component', __webpack_require__(/*! ./components/admin/AdminComponent */ "./resources/js/components/admin/AdminComponent.vue")["default"]);
 Vue.component('admin-appointment-component', __webpack_require__(/*! ./components/admin/AdminAppointmentComponent.vue */ "./resources/js/components/admin/AdminAppointmentComponent.vue")["default"]);
 Vue.component('admin-today-appointment-component', __webpack_require__(/*! ./components/admin/AdminTodayAppointmentComponent.vue */ "./resources/js/components/admin/AdminTodayAppointmentComponent.vue")["default"]);
@@ -64392,6 +64710,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/RandevuDetailComponent.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/RandevuDetailComponent.vue ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RandevuDetailComponent_vue_vue_type_template_id_12015fb8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RandevuDetailComponent.vue?vue&type=template&id=12015fb8& */ "./resources/js/components/RandevuDetailComponent.vue?vue&type=template&id=12015fb8&");
+/* harmony import */ var _RandevuDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RandevuDetailComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/RandevuDetailComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _RandevuDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _RandevuDetailComponent_vue_vue_type_template_id_12015fb8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _RandevuDetailComponent_vue_vue_type_template_id_12015fb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/RandevuDetailComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/RandevuDetailComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/RandevuDetailComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RandevuDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./RandevuDetailComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RandevuDetailComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RandevuDetailComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/RandevuDetailComponent.vue?vue&type=template&id=12015fb8&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/RandevuDetailComponent.vue?vue&type=template&id=12015fb8& ***!
+  \*******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RandevuDetailComponent_vue_vue_type_template_id_12015fb8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./RandevuDetailComponent.vue?vue&type=template&id=12015fb8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RandevuDetailComponent.vue?vue&type=template&id=12015fb8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RandevuDetailComponent_vue_vue_type_template_id_12015fb8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RandevuDetailComponent_vue_vue_type_template_id_12015fb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

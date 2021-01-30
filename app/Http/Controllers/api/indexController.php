@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Appointment;
+use App\AppointmentNote;
 use App\Http\Controllers\Controller;
 use App\WorkingHours;
 use Illuminate\Http\Request;
@@ -45,6 +46,8 @@ class indexController extends Controller
 
     if ($control != 0) $returnArray['message'] = 'Bu randevu tarihi doludur.';
 
+    $all['code'] = substr(md5(uniqid()), 0, 6);
+
     $create = Appointment::create($all);
 
     if ($create) {
@@ -84,6 +87,33 @@ class indexController extends Controller
     foreach ($data as $k => $v) {
       $returnArray[$v['day']][] = $v['hours'];
     }
+
+    return response()->json($returnArray);
+  }
+
+  public function appointmentDetail(Request $request)
+  {
+    $returnArray = [];
+    $returnArray['status'] = false;
+    $all = $request->except('_token');
+    $c = Appointment::where('code', $all['code'])->count();
+
+    if ($all['code'] == "") {
+      $returnArray['message'] = 'Lütfen kodu boş bırakmayınız';
+      return response()->json($returnArray);
+    }
+
+    if ($c == 0) {
+      $returnArray['message'] = 'Bu kodla eşlesen randevu bulunamadı';
+      return response()->json($returnArray);
+    }
+
+    $info = Appointment::where('code', $all['code'])->get();
+    $info[0]['working'] = WorkingHours::getString($info[0]['workingHour']);
+    $info[0]['notification'] = ($info[0]['notificationType'] == NOTIFICATION_EMAIL) ? 'Email' : 'SMS';
+    $returnArray['status'] = true;
+    $returnArray['info'] = $info[0];
+    $returnArray['note'] = AppointmentNote::where('appointment_id', $info[0]['id'])->orderBy('id', 'DESC')->get();
 
     return response()->json($returnArray);
   }

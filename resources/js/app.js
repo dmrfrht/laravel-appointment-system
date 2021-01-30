@@ -25,6 +25,7 @@ Vue.use(require('vue-resource'))
 /*Vue.component('example-component', require('./components/ExampleComponent.vue').default);*/
 Vue.component('admin-list-appointment', require('./components/admin/AdminListAppointment.vue').default);
 Vue.component('randevu-form-component', require('./components/RandevuFormComponent.vue').default);
+Vue.component('randevu-detail-component', require('./components/RandevuDetailComponent.vue').default);
 
 Vue.component('admin-component', require('./components/admin/AdminComponent').default);
 Vue.component('admin-appointment-component', require('./components/admin/AdminAppointmentComponent.vue').default);

@@ -58,6 +58,7 @@ class ReminderTask extends Command
           'email' => $v['email'],
           'date' => $v['date'],
           'time' => WorkingHours::getString($v['workingHour']),
+          'code' => $v['code']
         ];
 
         try {
@@ -78,7 +79,7 @@ class ReminderTask extends Command
         $password = 'yok';
         $origin_name = 'yok';
 
-        $message = 'Merhaba <b>' . $v['full_name'] . '</b>, Randevunuz <b>' . $v['date'] . '</b> tarihinde <b>' . WorkingHours::getString($v['workingHour']) . '</b> saatleri arasındadır.Lütfen geç kalmayınız.';
+        $message = 'Merhaba <b>' . $v['full_name'] . '</b>, Randevunuz <b>' . $v['date'] . '</b> tarihinde <b>' . WorkingHours::getString($v['workingHour']) . '</b> saatleri arasındadır.Randevu takip kodu: <b>' . $v['code'] . '</b>Lütfen geç kalmayınız.';
         $number = str_replace("-", "", $v['phone']);
 
         $xml = '
@@ -102,13 +103,13 @@ class ReminderTask extends Command
 
         try {
           $result = self::sendRequest('http://api.iletimerkezi.com/v1/send-sms', $xml, array('Content-Type: text/xml'));
-        
+
           $array = new \SimpleXMLElement($result);
-  
+
           if ($array->status->code == '200') {
             Appointment::where('id', $v['id'])->update(['isSend' => REMINDER_SUCCESS]);
           }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
           Appointment::where('id', $v['id'])->update(['isSend' => REMINDER_FAILED]);
         }
 
